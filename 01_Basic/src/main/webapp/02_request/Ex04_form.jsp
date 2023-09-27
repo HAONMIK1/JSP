@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <form method="post" action="Ex04_result.jsp">
+    <form method="post" action="Ex04_result2.jsp">
 이름: <input type="text" name="name"> <br>
 비번: <input type="password" name="pw"><br>
 

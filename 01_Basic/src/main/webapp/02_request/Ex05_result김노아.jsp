@@ -1,13 +1,56 @@
+<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%
-request.setCharacterEncoding("UTF-8");
+<%
+	request.setCharacterEncoding("UTF-8");//HttpServletRequest? 성조변수
 %>
-RESULT
-<table bored="1">
-	<tr>
+<h1>RESULT</h1>
+<table border="1">
+<% 
+	boolean flag =false;
+	Enumeration<String> names = request.getParameterNames();
+	while(names.hasMoreElements()){
+		String str = names.nextElement();
+		if(str.equals("agree"))
+				flag=true;
+		//out.print(str+" ");
+		String[] values = request.getParameterValues(str);
+		%><tr><% 
+		%><td> <% 
+		out.print(str);
+		if(str.length()==4){
+		}
+		%></td><%
+		%><td> <% 
+		for(int i=0;i<values.length;i++){
+		if(values[i].equals("on")){
+			out.print("동의함");
+		}
+		else
+		out.print(values[i]+" ");
+	}
+		%></td><%
+	
+		%></tr><%
+	} %>
+		<% 
+		if(flag==false){
+		out.print("<tr>");
+		out.print("<td>");
+		out.print("aprrove");
+		out.print("</td>");
+		out.print("<td>");
+			out.print("동의하지않음");
+		out.print("</td>");
+			}
+		out.print("<br> ");
+		out.print("</tr>");
+		%>
+</table>
+
+<%-- 	<tr>
 		<td>id</td>
-		<td><%=request.getParameter("name") %></td>
+		<td><%=request.getParameter("id") %></td>
 	</tr>
 	<tr>
 		<td>pw</td>
@@ -33,14 +76,11 @@ RESULT
 		<td>agree</td>
 		<td>
 			<%
-	String agree = request.getParameter("agree");
+			String agree = request.getParameter("agree");
 			if(agree.equals("on")){
 				out.print("동의함");
 			}
-
-%>
+			%>
 		</td>
 	</tr>
-
-
-</table>
+ --%>

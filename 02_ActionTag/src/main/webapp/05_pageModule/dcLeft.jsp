@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<hr>
-Ex09_bottom.jsp<br>
 
-//작성자는 <%=name %>입니다.
+    [디카 분류]<br>
+    제조사별 <br>
+    가격별 <br>
+    화소별 <br>

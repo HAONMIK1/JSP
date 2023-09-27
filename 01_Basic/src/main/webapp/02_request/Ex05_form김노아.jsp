@@ -41,21 +41,21 @@ function check(){
 		return false;
 	}
 	
-	if($("input[name='approve']").val()==""){
+	if(!$("input[name='approve']").is(":checked")){
 		alert("결제방법 누락");
 		return false;
 	} 
-	
-	if($("input[name='agree']:checked").val()!="on"){
+	alert($("input[name='agree']:checked").val());
+/* 	if($("input[name='agree']:checked").val()!="on"){
 		alert("결제 동의 체크하시오");
 		return false;
-	}
+	} */
 	
 }
 </script>
 <body>
 <h2> 상품 구매 내역 </h2>
-<FORM name="myform" METHOD="post" ACTION="Ex05_result김노아.jsp">
+<FORM name="myform" METHOD="post" ACTION="Ex05_result김노아.jsp"> <!-- METHOD="post" 이거 안쓰면 주소창에 넘어가는 정보보임 -->
 
  <span>아이디 :</span> <input TYPE="text" name="id"><br>
  <span>비번 :</span> <input TYPE="text" name="pw"><br>

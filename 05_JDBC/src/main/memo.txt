@@ -1,0 +1,19 @@
+drop table
+
+create table register(
+	id varchar2(10) primary key,
+	passwd varchar2(10) not null,
+	name varchar2(10) not null,
+	gender varchar2(10) not null,
+	uname varchar2(10) not null,
+	dname varchar2(10) not null
+);
+
+insert into register values('a1','1111','태연','여','abc','naver.com');
+
+insert into register values('a2','2222','수영','여','xxx','daum.net');
+
+insert into register values('a3','3333','보감','남','abc','goole.com');
+
+select * from register;
+commit;

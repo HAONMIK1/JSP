@@ -1,0 +1,22 @@
+drop table empl;
+drop sequence e_seq;
+
+create table empl(
+	mid number primary key,
+	name varchar2(10) not null,
+	depart number not null,
+	salary number
+);
+
+create sequence e_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 100000;
+
+insert into empl values(e_seq.nextval, 'kim',1,5000);
+
+commit;
+
+김노아바보
+김노아 코찔찔이

@@ -3,6 +3,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	MovieDao dao = new MovieDao();
+	ArrayList<MovieBean>lists = dao.list();
+	%>
+<script type="text/javascript" src="js/jquery.js"></script>    
 <script type="text/javascript">
 function selectDelete() {
 	flag = false;
@@ -37,11 +43,6 @@ function allDelete(obj) {
 	}
 }
 </script>
-<%
-	request.setCharacterEncoding("UTF-8");
-	MovieDao dao = new MovieDao();
-	ArrayList<MovieBean>lists = dao.list();
-	%>
 <form name="myform" action="deleteAll.jsp">
 	<input type="button" value="삭제" onclick="selectDelete()"> 
 	<input type="button" value="추가" onClick="location.href='insertForm.jsp'">

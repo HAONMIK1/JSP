@@ -76,7 +76,8 @@ public class MovieDao {
 			ps.setString(5,mb.getTime());
 			ps.setInt(6,mb.getPartner());
 			ps.setString(7,mb.getMemo());
-			 cnt =ps.executeUpdate();
+			
+			cnt =ps.executeUpdate();
 			
 		}catch(Exception e) {
 			

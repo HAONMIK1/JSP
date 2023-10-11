@@ -1,6 +1,9 @@
 <%@page import="myPkg.MovieDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 <jsp:useBean id="dao" class="myPkg.MovieDao"/>
 <jsp:useBean id="mb" class="myPkg.MovieBean"/>
 <jsp:setProperty property="*" name="mb"/>
@@ -22,14 +25,19 @@
 	mb.setGenre(genre);
 	
 	int cnt = dao.insert(mb);
-	if(cnt==0){
-	%>
-	<script type="text/javascript">
-	alert("가입 실패")
-	</script>
-	<%
-	response.sendRedirect("list.jsp");
+	if(cnt==1){
+		%>
+		<script type="text/javascript">
+		alert("가입 성공")
+		</script>
+		<jsp:forward page="list.jsp"/>
+		<%
 	}else{
-		response.sendRedirect("list.jsp");
+		%>
+		<script type="text/javascript">
+		alert("가입 실패")
+		</script>
+		<jsp:forward page="insertForm.jsp"/>
+		<%
 	}
 %>

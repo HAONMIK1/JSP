@@ -1,45 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>    
 <script type="text/javascript">
-$(doucument).ready(function(){
+$(document).ready(function(){
+	//alert(1);
 	var isBlank = false;
 	var use;
 	var isCheck = false;
-	$('#id_check').click(function() {
+	
+	$('#id_check').click(function(){ // 중복체크 클릭
+		//alert(2);
+		//alert($('input[name="id"]').val());
 		isCheck = true;
+		
 		if($('input[name="id"]').val()==""){
 			alert("아이디를 입력하세요");
 			isBlank = true;
-			return;
+			return;	
 		}
+		
 		isBlank = false;
+		
+		
 		$.ajax({
-			url :"id_check_proc.jsp"
-			data : ({
-					userid : $('input[name:"id"]').val()
-		}),
-		success : function(data) {
-			if(jQuery.trim(data)=='YES'){
-				$('#idmessage').html("사용 가능");
-				$('#idmessage').show();
-				use = "possible";
-			}else{
-				$('#idmessage').html("이미 사용중인 아이디입니다.");
-				$('#idmessage').show();
-				use = "impossible";
-			}
-		}
-			
-		})
-	})
-	$("input[name='id']").keydown(function() {
+				url : "id_check_proc.jsp",
+				data : ({
+						userid : $('input[name="id"]').val()
+				}), // userid = kim
+				success : function(data){
+					//alert("data:"+data);
+					if(jQuery.trim(data)=='YES'){
+						$('#idmessage').html("<font color=blue>사용 가능합니다.</font>");
+						$('#idmessage').show();
+						use = "possible";
+					}else{
+						$('#idmessage').html("<font color=red>이미 사용중인 아이디입니다.</font>");
+						$('#idmessage').show();
+						use = "impossible";
+					}
+				}	
+		}); // ajax 
+	}); // id_check click
+	
+	
+	$("input[name=id]").keydown(function() {
+		//alert("키보드 누름");
 		isCheck = false;
 		use="";
 		$('#idmessage').css('display','none');
-	});
+	}); // keydown
 	
-	$('#sub').click(function(){ 
+	$('#sub').click(function(){ // submit
+		//alert('submit클릭');
 		if(use == "impossible"){
 			alert("이미 사용중인 아이디입니다.");
 			return false;
@@ -51,9 +63,10 @@ $(doucument).ready(function(){
 			alert("아이디를 입력하세요");
 			return false;
 		}
-	 }); 
-	
-})
+	 }); // sub click
+	 
+}); // ready   
+</script>
 </script>
 <h1>영화 선호도 조사</h1>
 <form  action="insertProc.jsp" method="post">

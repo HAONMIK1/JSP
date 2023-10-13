@@ -1,4 +1,4 @@
-package myPkg;
+package main.java.myPkg;
 
 public class MovieBean {
 	private int num;

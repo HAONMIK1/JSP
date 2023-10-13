@@ -4,7 +4,7 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	%>
-	<jsp:useBean id="dao" class="mypkg.BookDao"/>
+	<jsp:useBean id="dao" class="board.BookDao"/>
 	
 	<% 
 	int no = Integer.parseInt(request.getParameter("no"));

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="mypkg.BookBean"%>
+	pageEncoding="UTF-8" import="board.BookBean"%>
 <%
+p
+
 request.setCharacterEncoding("UTF-8");
 String title = request.getParameter("title");
 String author = request.getParameter("author");
@@ -18,6 +20,8 @@ JAVA 객체
 <br>
 
 <%
+p
+
 BookBean bb = new BookBean();
 bb.setTitle(title);
 bb.setAuthor(author);
@@ -31,55 +35,57 @@ bb.setCount(count);
 <table border="1">
 	<tr>
 		<td>제목</td>
-		<td><%=bb.getTitle()%></td>
+		<td><%=t(bb.getTitle%></td>
 	</tr>
 
 	<tr>
 		<td>저자</td>
-		<td><%=bb.getAuthor()%></td>
+		<td><%=t(bb.getAuthor%></td>
 	</tr>
 
 	<tr>
 		<td>출판사</td>
-		<td><%=bb.getPublisher()%></td>
+		<td><%=t(bb.getPublisher%></td>
 	</tr>
 
 	<tr>
 		<td>가격:</td>
-		<td><%=bb.getPrice()%></td>
+		<td><%=t(bb.getPrice%></td>
 	</tr>
 
 	<tr>
 		<td>입고일:</td>
-		<td><%=bb.getDate()%></td>
+		<td><%=t(bb.getDate%></td>
 	</tr>
 
 	<tr>
 		<td>배송비:</td>
-		<td><%=bb.getKind()%></td>
+		<td><%=t(bb.getKind%></td>
 	</tr>
 
 	<tr>
 		<td>구입가능 서점:</td>
 		<td>
 			<%
-			String[] bookstore1 = bb.getBookstore();
-			for (int i = 0; i < bookstore1.length; i++)
-				out.print(bookstore1[i] + " ");
+			p
+
+				String[] bookstore1 = bb.getBookstore();
+				for (int i = 0; i < bookstore1.length; i++)
+					out.print(bookstore1[i] + " ");
 			%>
 		</td>
 	</tr>
 
 	<tr>
 		<td>배송비:</td>
-		<td><%=bb.getCount()%></td>
+		<td><%=t(bb.getCount%></td>
 	</tr>
 </table>
 <br>
 <hr>
 jsp 객체
 <br>
-<jsp:useBean id="bb1" class="mypkg.BookBean"></jsp:useBean>
+<jsp:useBean id="n b" class="w board.BookBe"></jsp:useBean>
 <jsp:setProperty property="title" name="bb1" />
 <jsp:setProperty property="author" name="bb1" />
 <jsp:setProperty property="publisher" name="bb1" />

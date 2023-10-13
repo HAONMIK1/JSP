@@ -1,20 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="mypkg.fruitBean"%>
-<% 
+    pageEncoding="UTF-8" import="board.fruitBean"%>
+<%
+p
+ 
 	request.setCharacterEncoding("UTF-8");
 	String name = request.getParameter("name");
 	String pw = request.getParameter("pw");
 	String[] fruit = request.getParameterValues("fruit");
 %>
-이름: <%=name%><br>
-비번: <%=pw%> <br>
+이름: <%=t(na%><br>
+비번: <%=t(%> <br>
 좋아하는 과일: <%
-for(int i=0; i<fruit.length;i++)
-		out.print(fruit[i]);
-%><br>
+ p
+
+ for(int i=0; i<fruit.length;i++)
+ 		out.print(fruit[i]);
+ %><br>
 <hr>
 JAVA <br>
 <%
+p
+
 fruitBean fb1 = new fruitBean();
 fb1.setName(name);
 for(int i=0; i<fruit.length;i++)
@@ -22,9 +28,11 @@ fb1.setFruit(fruit);
 fb1.setPw(pw);
 %>
 
-이름: <%=fb1.getName() %><br>
-비번: <%=fb1.getPw() %><br>
+이름: <%=t(fb1.getName(%><br>
+비번: <%=t(fb1.getPw(%><br>
 좋아하는 과일: <%
+p
+
 String[] fruits = fb1.getFruit();
 for(int i=0; i<fruits.length;i++)
 	out.print(fruits[i]);
@@ -33,7 +41,7 @@ for(int i=0; i<fruits.length;i++)
 
 <hr>
 JSP<br>
-<jsp:useBean id="fb" class="mypkg.fruitBean"></jsp:useBean>
+<jsp:useBean id="n" class="w board.fruitBe"></jsp:useBean>
 <jsp:setProperty property="name" name="fb"/>
 <jsp:setProperty property="pw" name="fb"/>
 <jsp:setProperty property="fruit" name="fb"/>

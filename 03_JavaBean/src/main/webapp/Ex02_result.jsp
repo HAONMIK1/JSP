@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="mypkg.PersonBean"%>
-<%	
-		request.setCharacterEncoding("UTF-8");
+    pageEncoding="UTF-8" import="board.PersonBean"%>
+<%
+request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String age = request.getParameter("age");
 		String addr = request.getParameter("addr");
@@ -16,11 +16,10 @@ addr: <%=addr%>  <br>
 <hr>
 
 <%
-	PersonBean sb =new PersonBean();
+PersonBean sb =new PersonBean();
 	sb.setName(name);
 	sb.setAge(Integer.parseInt(age));
 	sb.setAddr(addr);
-
 %>
 
 name: <%=sb.getName()%> <br>
@@ -32,7 +31,7 @@ addr: <%=sb.getAddr()%>  <br>
 
 <hr>
 
-<jsp:useBean id="pb1" class="mypkg.PersonBean"/>
+<jsp:useBean id="pb1" class="board.PersonBean"/>
 <jsp:setProperty property="name" name="pb1" />
 <jsp:setProperty property="age" name="pb1" />
 <jsp:setProperty property="addr" name="pb1" param="addr"/>

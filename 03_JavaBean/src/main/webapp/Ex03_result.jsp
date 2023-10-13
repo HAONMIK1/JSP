@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="mypkg.SingBean"%>
-<% 
-	request.setCharacterEncoding("UTF-8");
+    pageEncoding="UTF-8" import="board.SingBean"%>
+<%
+request.setCharacterEncoding("UTF-8");
 	String hakbun = request.getParameter("hakbun");
 	String name = request.getParameter("name");
 	String sing = request.getParameter("sing");
@@ -22,14 +22,14 @@ sb1.setGirl(girl);
 %>
 
 학번: <%=sb1.getHakbun()%> <br>
-이름: <%=sb1.getName() %><br>
-좋아하는 노래: <%=sb1.getSing() %><br>
-좋아하는 걸그룹: <%=sb1.getGirl() %><br>
+이름: <%=sb1.getName()%><br>
+좋아하는 노래: <%=sb1.getSing()%><br>
+좋아하는 걸그룹: <%=sb1.getGirl()%><br>
 
 
 <hr>
 JSP<br>
-<jsp:useBean id="sb" class="mypkg.SingBean"></jsp:useBean>
+<jsp:useBean id="sb" class="board.SingBean"></jsp:useBean>
 <%-- <jsp:setProperty property="hakbun" name="sb"/>
 <jsp:setProperty property="name" name="sb"/>
 <jsp:setProperty property="sing" name="sb"/>

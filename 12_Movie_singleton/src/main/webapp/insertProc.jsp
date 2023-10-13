@@ -1,4 +1,4 @@
-<%@page import="myPkg.MovieDao"%>
+<%@page import="main.java.myPkg.MovieDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 insertProc.jsp<br>
@@ -7,7 +7,7 @@ insertProc.jsp<br>
 %>
  
 <%-- <jsp:useBean id="mdao" class="myPkg.MovieDao" /> --%>
-<jsp:useBean id="mb" class="myPkg.MovieBean" />
+<jsp:useBean id="mb" class="main.java.myPkg.MovieBean" />
 <jsp:setProperty property="*" name="mb" />
 
 <%

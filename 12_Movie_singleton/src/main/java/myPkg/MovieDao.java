@@ -1,4 +1,4 @@
-package myPkg;
+package main.java.myPkg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

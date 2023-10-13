@@ -1,4 +1,4 @@
-<%@page import="mypkg.EmplBean"%>
+<%@page import="board.EmplBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 insertProc.jsp
@@ -15,13 +15,13 @@ eb.setDepart(depart);
 eb.setSalary(salary);
 %>
 
-<jsp:useBean id="eb1" class="mypkg.EmplBean" />
+<jsp:useBean id="eb1" class="board.EmplBean" />
 <jsp:setProperty property="name" name="eb1" />
 <jsp:setProperty property="depart" name="eb1" />
 <jsp:setProperty property="salary" name="eb1" />
 <jsp:getProperty property="name" name="eb1" />
 
-<jsp:useBean id="edao" class="mypkg.EmplDao" />
+<jsp:useBean id="edao" class="board.EmplDao" />
 <%
 	String msg;
 	String url;

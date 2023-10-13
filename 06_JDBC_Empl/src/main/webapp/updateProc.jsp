@@ -1,5 +1,5 @@
-<%@page import="mypkg.EmplDao"%>
-<%@page import="mypkg.EmplBean"%>
+<%@page import="board.EmplDao"%>
+<%@page import="board.EmplBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 updateProc.jsp

@@ -1,5 +1,4 @@
-<%@page import="myPkg.MovieDao"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="main.java.myPkg.MovieDao"%><%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%-- <jsp:useBean id="mdao" class="myPkg.MovieDao"></jsp:useBean> --%>

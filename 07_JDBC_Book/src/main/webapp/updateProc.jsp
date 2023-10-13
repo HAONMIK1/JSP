@@ -4,8 +4,8 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	%>
-<jsp:useBean id="dao" class="mypkg.BookDao"/>
-<jsp:useBean id="bb" class="mypkg.BookBean"/>
+<jsp:useBean id="dao" class="board.BookDao"/>
+<jsp:useBean id="bb" class="board.BookBean"/>
 	<jsp:setProperty property="*" name="bb"/>
 	<% 
 	String[] bookstore = request.getParameterValues("bookstore");

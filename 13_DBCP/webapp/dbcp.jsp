@@ -57,28 +57,6 @@ dbcp.jsp <br>
 	ps.close();
 	conn.close();
 %>
-<h1>글목로(전체 글:14)</h1>
-<form>
-	<table>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>직성자</th>
-			<th>작성일</th>
-			<th>조회</th>
-			<th>IP</th>
-		</tr>
-		<% for(int i=0; i<lists.length;i++ ){ %>
-		
-		
-		<%} %>
-	
-	
-	
-	</table>
-</form>
-
-
 
 
 

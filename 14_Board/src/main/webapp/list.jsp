@@ -75,8 +75,6 @@ list.jsp
 		<tr>
 			<td><%=bb.getNum() %></td>
 			<td>
-						<a href="content.jsp?num=<%=bb.getNum() %>">
-			<%=bb.getSubject() %>
 			<%
 							int wid =0;
 						if(bb.getRe_level()>0){
@@ -88,7 +86,14 @@ list.jsp
 						}
 						
 						%>
+						<a href="content.jsp?num=<%=bb.getNum() %>">
+			<%=bb.getSubject() %>
 						</a>
+						<%if(bb.getReadcount()>=10){
+							%>
+							<img alt="" src="images/hot.gif">
+							<%
+						} %>
 						</td>
 			<td><%=bb.getWriter() %></td>
 			<td><%=sdf.format(bb.getReg_date()) %></td>

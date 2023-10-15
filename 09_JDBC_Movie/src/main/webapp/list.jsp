@@ -7,7 +7,7 @@
 	request.setCharacterEncoding("UTF-8");
 	MovieDao dao = new MovieDao();
 	ArrayList<MovieBean>lists = dao.list();
-	%>
+%>
 <script type="text/javascript" src="js/jquery.js"></script>    
 <script type="text/javascript">
 function selectDelete() {

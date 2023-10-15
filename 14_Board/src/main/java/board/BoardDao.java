@@ -17,7 +17,7 @@ public class BoardDao {
 	Connection conn = null;
 	PreparedStatement ps = null;
 	ResultSet rs = null;
-	
+
 	public static BoardDao instance = new BoardDao();
 
 	private BoardDao() {
@@ -54,7 +54,7 @@ public class BoardDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, start);
 			ps.setInt(2, end);
-			
+
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				int num = rs.getInt("num");
@@ -89,13 +89,13 @@ public class BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-//			try {
-//				if(ps != null) 
-//					ps.close();
-//				if(rs != null)
-//					rs.close();
-//			}catch(SQLException e) {
-//			}
+			//			try {
+			//				if(ps != null) 
+			//					ps.close();
+			//				if(rs != null)
+			//					rs.close();
+			//			}catch(SQLException e) {
+			//			}
 		}
 		return lists;
 	}//getArticles
@@ -112,20 +112,20 @@ public class BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-//			try {
-//				if(ps!=null) {
-//					ps.close();
-//				}
-//				if(rs!=null) {
-//					rs.close();
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
+			//			try {
+			//				if(ps!=null) {
+			//					ps.close();
+			//				}
+			//				if(rs!=null) {
+			//					rs.close();
+			//				}
+			//			} catch (SQLException e) {
+			//				e.printStackTrace();
+			//			}
 		}
 		return count;
 	}//getArticleCount
-	
+
 	public int insertArticle(BoardBean bb) { // 원글쓰기
 		int cnt = -1;
 		String sql = "insert into board(num,writer,email,subject,passwd,"
@@ -138,65 +138,68 @@ public class BoardDao {
 			ps.setString(3, bb.getSubject());
 			ps.setString(4, bb.getPasswd());
 			ps.setTimestamp(5,bb.getReg_date());
-			
+
 			ps.setInt(6, 0);
 			ps.setInt(7, 0);
 			ps.setString(8, bb.getContent());
 			ps.setString(9, bb.getIp());
-			
+
 			cnt = ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-	//			try {
-	//			if(ps != null) {
-	//				ps.close();
-	//			}
-	//			if(rs != null) {
-	//				rs.close();
-	//			}
-	//		}catch(Exception e) {
-	//			e.printStackTrace();
-	//		}
+			//			try {
+			//			if(ps != null) {
+			//				ps.close();
+			//			}
+			//			if(rs != null) {
+			//				rs.close();
+			//			}
+			//		}catch(Exception e) {
+			//			e.printStackTrace();
+			//		}
 		}
 		return cnt;
 	}//insertArticle
-	
-	public BoardBean SelectNum(int num) {
-		BoardBean bb =new BoardBean();
-		String sql = "select * from board where num= ?";
-		String sql2 = "update board set readcount = readcount+1 where num=?";
+
+	public BoardBean getArticle(int num){
+
+		BoardBean bb = null;
+
 		try {
+			String sql2 = "update board set readcount=readcount+1 where num=?";
+			String sql = "select * from board where num = ?";
+			
 			ps = conn.prepareStatement(sql2);
 			ps.setInt(1, num);
-			ps.executeUpdate();
+			ps.executeUpdate(); // 조회수 증가
 			
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, num);
 			rs = ps.executeQuery();
+
 			if(rs.next()) {
-				bb.setNum(rs.getInt(num));
+				bb = new BoardBean();
+				bb.setNum(rs.getInt("num"));
 				bb.setWriter(rs.getString("writer"));
-				bb.setContent(rs.getString("content"));
-				bb.setReadcount(rs.getInt("readcount"));
 				bb.setSubject(rs.getString("subject"));
+				bb.setEmail(rs.getString("email"));
+				bb.setPasswd(rs.getString("passwd"));
 				bb.setReg_date(rs.getTimestamp("reg_date"));
+				bb.setReadcount(rs.getInt("readcount"));
+				bb.setRef(rs.getInt("ref"));
+				bb.setRe_step(rs.getInt("re_step"));
+				bb.setRe_level(rs.getInt("re_level"));
+				bb.setContent(rs.getString("content"));
+				bb.setIp(rs.getString("ip"));
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-//			try {
-//				if(ps!=null) {
-//					ps.close();
-//				}
-//				if(rs!=null) {
-//					rs.close();
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
 		}
-		
+
 		return bb;
-	}
+	}//getArticle
+
 }

@@ -18,7 +18,7 @@ list.jsp
 	BoardDao bdao = BoardDao.getInstance();
 	System.out.println("list.jsp bdao:" + bdao);
 	
-	int pageSize = 2; // 
+	int pageSize = 7; // 
 	SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm");
 	
 	String pageNum = request.getParameter("pageNum"); // pageNum=2
@@ -29,6 +29,8 @@ list.jsp
 	int currentPage = Integer.parseInt(pageNum); // 
 	int startRow = (currentPage-1) * pageSize + 1; // 
 	int endRow = currentPage * pageSize;
+	
+	
 	// 1:1,10
 	// 2:11,20
 	// 3:21,30
@@ -72,7 +74,7 @@ list.jsp
 			for(int i=0;i<articleLists.size();i++){
 				BoardBean bb = articleLists.get(i);
 				%>
-		<tr>
+		<tr>        
 			<td><%=bb.getNum() %></td>
 			<td>
 			<%
@@ -84,16 +86,18 @@ list.jsp
 						}else{
 							
 						}
-						
 						%>
-						<a href="content.jsp?num=<%=bb.getNum() %>">
-			<%=bb.getSubject() %>
+						
+						<a href="content.jsp?num=<%=bb.getNum()%>&pageNum=<%=currentPage%>">
+						<%=bb.getSubject() %>
 						</a>
+						
 						<%if(bb.getReadcount()>=10){
 							%>
 							<img alt="" src="images/hot.gif">
 							<%
-						} %>
+						} 
+						%>
 						</td>
 			<td><%=bb.getWriter() %></td>
 			<td><%=sdf.format(bb.getReg_date()) %></td>

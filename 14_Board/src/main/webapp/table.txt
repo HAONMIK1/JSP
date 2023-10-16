@@ -96,8 +96,7 @@ select rownum,num,subject,ref,re_step,re_level from board;
         14         14 a33                 6          1          1
 
 
-select rownum,num,subject,ref,re_step,re_level from board
-  2  order by ref desc, re_step asc;
+select rownum,num,subject,ref,re_step,re_level from board order by ref desc, re_step asc;
 
     ROWNUM        NUM SUBJECT           REF    RE_STEP   RE_LEVEL
 ---------- ---------- ---------- ---------- ---------- ----------
@@ -143,8 +142,7 @@ order by ref desc, re_step asc;
 [topN절 사용의 2단계]
 select rownum as rank, num, subject, ref, re_step, re_level	
 from (select num, subject, ref, re_step, re_level	
-from board 
-order by ref desc, re_step asc);
+from board order by ref desc, re_step asc);
 
 
      RANK        NUM SUBJECT           REF    RE_STEP   RE_LEVEL

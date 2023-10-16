@@ -21,12 +21,13 @@ list.jsp=>content.jsp<br>
 <%
 	request.setCharacterEncoding("UTF-8");
 	int num =Integer.parseInt(request.getParameter("num"));
+	String pageNum = request.getParameter("pageNum");
 	BoardDao bdao = BoardDao.getInstance();
-	BoardBean bb= bdao.getArticle(num); 
+	BoardBean bb= bdao.getArticleByNum(num); 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
 <body bgcolor="<%=bodyback_c %>">
-<h1>글내용보기</h1>
+<h1>글내용보기(<%=bb.getRef() %><%=bb.getRe_level() %> <%=bb.getRe_step() %>)</h1>
 <table width="500" border="1" bgcolor="<%=bodyback_c%>" align="center">
 	<tr>
 		<td align="center" width="125" bgcolor="<%=value_c%>">글번호</td>
@@ -52,10 +53,10 @@ list.jsp=>content.jsp<br>
    	
    	<tr>
 		<td bgcolor="<%=value_c%>" colspan="4" align="right">
-			<input type="button" value="글수정">
-			<input type="button" value="글삭제" onClick="location.href='deleteForm.jsp?num=<%=bb.getNum()%>'" >
-			<input type="button" value="답글쓰기">
-			<input type="button" value="글목록" onClick="location.href='list.jsp'">
+			<input type="button" value="글수정"  onClick="location.href='updateForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum %>'">
+			<input type="button" value="글삭제" onClick="location.href='deleteForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum %>'" >
+			<input type="button" value="답글쓰기" onClick="location.href='replyForm.jsp?ref=<%=bb.getRef() %>&re_level=<%=bb.getRe_level() %>&re_step=<%=bb.getRe_step() %>&pageNum=<%=pageNum %>'">
+			<input type="button" value="글목록" onClick="location.href='list.jsp?pageNum=<%=pageNum%>'">
 		</td>
 	</tr>
 </table>

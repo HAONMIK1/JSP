@@ -31,7 +31,7 @@ list.jsp
 	int endRow = currentPage * pageSize;
 	
 	
-	// 1:1,10
+	// 1:1,10s
 	// 2:11,20
 	// 3:21,30
 	
@@ -55,7 +55,7 @@ list.jsp
 	<%
 			if(count==0){
 		%>
-	<tablewidth= "700">
+	<table width= "700">
 	<tr>
 		<td align="center" bgcolor="<%=value_c%>">게시판에 저장된 글이 없습니다.</td>
 	</tr>
@@ -78,7 +78,7 @@ list.jsp
 			<td><%=bb.getNum() %></td>
 			<td>
 			<%
-							int wid =0;
+						int wid =0;
 						if(bb.getRe_level()>0){
 							wid = bb.getRe_level()*20;
 						%> <img alt="" src="images/level.gif" width="<%=wid%>"> <img

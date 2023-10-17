@@ -67,7 +67,6 @@ $(document).ready(function(){
 	 
 }); // ready   
 </script>
-</script>
 <h1>영화 선호도 조사</h1>
 <form  action="insertProc.jsp" method="post">
 <table border="1">

@@ -4,36 +4,39 @@ drop table category purge ;
 
 create sequence catseq nocache ;
 create table category(
-	cnum 	number primary key, // 카테고리순서
-	code 	varchar2(20) not null, // 카테고리 코드(bread)
-	cname 	varchar2(50) not null // 카테고리이름(빵)
+	cnum 	number primary key, 
+	code 	varchar2(20) not null, 
+	cname 	varchar2(50) not null 
 );
-
-drop sequence catprod ;
-drop table product purge ;
 
 col pname for a12
 col pcompany for a12
 col pimage for a12
 col pcontents for a12
-select * from product  ;
+
+drop sequence catprod ;
+drop table product purge ;
+
 
 drop sequence catprod ;
 create sequence catprod nocache;
 create table product(
-	pnum 		int not null primary key, // 상품순서
-	pname 		varchar2(50) not null, // 상품명(슈크림)
-	pcategory_fk  	varchar2(20) not null, // 카테고리코드+카테고리명(code+cname=breadsu)
-	pcompany 	varchar2(50), // 롯데
-	pimage   		varchar2(30), // a.jpg
-	pqty		int default 0, // 3
-	price   		int default 0, // 100 
-	pspec   		varchar2(12), // HIT
-	pcontents 	varchar2(300), // 설명
-	point   		int default 0, // 222
-	pinputdate 	varchar2(10) // 2013-09-24
+	pnum 		number not null primary key, 
+	pname 		varchar2(50) not null, 
+	pcategory_fk  	varchar2(20) not null, 
+	pcompany 	varchar2(50), 
+	pimage   		varchar2(30), 
+	pqty		number default 0,
+	price   		number default 0, 
+	pspec   		varchar2(12), 
+	pcontents 	varchar2(300), 
+	point   		number default 0, 
+	pinputdate 	varchar2(10)
 );
 
+select * from product  ;
+
+commit;
 -- 회원 테이블 생성
 drop sequence memseq ;
 create sequence memseq nocache ;

@@ -1,19 +1,20 @@
-<%@page import="myPkg.MovieDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<jsp:useBean id="mdao" class="myPkg.MovieDao"></jsp:useBean>
 <%
-	request.setCharacterEncoding("UTF-8");
 	String userid = request.getParameter("userid");
+	System.out.println("userid:"+ userid);
 	
-	MovieDao mdao = new MovieDao();
-	boolean cnt = mdao.idCheck(userid);
-	String str ="";
-	if(cnt){
-		str="NO";
-		out.print(str);
-	}
-	else{
-		str="YES";
-		out.print(str);
+	boolean isCheck = mdao.searchId(userid);   
+	// true=>이미=>사용X
+	String str = "";
+	
+	if(isCheck){
+		str = "NO";
+		out.print(str); // 출력X
+	}else{
+		str = "YES";
+		out.print(str); 
 	}
 %>

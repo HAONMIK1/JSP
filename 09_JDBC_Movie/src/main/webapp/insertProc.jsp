@@ -1,43 +1,50 @@
-<%@page import="myPkg.MovieDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+insertProc.jsp<br>
 <%
-    request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 %>
-<jsp:useBean id="dao" class="myPkg.MovieDao"/>
-<jsp:useBean id="mb" class="myPkg.MovieBean"/>
-<jsp:setProperty property="*" name="mb"/>
+
+<jsp:useBean id="mdao" class="myPkg.MovieDao" />
+<jsp:useBean id="mb" class="myPkg.MovieBean" />
+<jsp:setProperty property="*" name="mb" />
+
 <%
+String[] genreList = request.getParameterValues("genre");
+String genre = "";
+
+if (genreList == null) {
+	genre = "좋아하는 장르 없음";
+} else {
 	
-	String[] genre1 = request.getParameterValues("genre");
-	String genre="";
-	if(genre1 == null){ // 
-		genre = "선택항목 없음";
-	}else{
-		for(int i=0; i<genre1.length; i++){
-			if (i != genre1.length-1){
-				genre += genre1[i] + ","; // 달리기,수영,영화 
-			}else{
-				genre += genre1[i];
-			}
+	for (int i = 0;i<genreList.length; i++){
+		if (i != genreList.length -1) {
+			genre += genreList[i] + ",";
+		} else {
+			genre += genreList[i];
 		}
 	}
-	mb.setGenre(genre);
 	
-	int cnt = dao.insert(mb);
-	if(cnt==1){
-		%>
-		<script type="text/javascript">
-		alert("가입 성공")
+}
+
+mb.setGenre(genre);
+
+int cnt = mdao.insertData(mb); 
+
+if (cnt != 0) {
+	%>
+		<script>
+			alert('삽입성공');
 		</script>
-		<jsp:forward page="list.jsp"/>
-		<%
-	}else{
-		%>
-		<script type="text/javascript">
-		alert("가입 실패")
-		</script>
-		<jsp:forward page="insertForm.jsp"/>
-		<%
-	}
+	<%
+	response.sendRedirect("list.jsp");
+} else {
+	%>
+	<script>
+		alert('삽입실패');
+	</script>
+<%
+response.sendRedirect("insertForm.jsp");
+}
+
 %>

@@ -14,8 +14,9 @@ if(mb!=null){
 		if(id.equals("admin")){//관리자
 			viewPage = request.getContextPath() + "/myshop/admin/main.jsp";
 		}else{//일반회원
-			viewPage = request.getContextPath() + "/myshop/display/mall.jsp";
+			viewPage = request.getContextPath() + "/myshop/display/mall.jsp?id="+id;
 		}
+		session.setAttribute("memid", id);
 	}else{
 		%>
 			<script type="text/javascript">

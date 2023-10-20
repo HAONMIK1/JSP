@@ -26,7 +26,7 @@ create table product(
 	pcategory_fk  	varchar2(20) not null, 
 	pcompany 	varchar2(50), 
 	pimage   		varchar2(30), 
-	pqty		number default 0,
+	pqty		    number default 0,
 	price   		number default 0, 
 	pspec   		varchar2(12), 
 	pcontents 	varchar2(300), 

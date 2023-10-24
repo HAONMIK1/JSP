@@ -17,6 +17,7 @@ if(mb!=null){
 			viewPage = request.getContextPath() + "/myshop/display/mall.jsp?id="+id;
 		}
 		session.setAttribute("memid", id);
+		session.setAttribute("memno", mb.getNo());
 	}else{
 		%>
 			<script type="text/javascript">

@@ -41,7 +41,8 @@
 			<img src="<%=request.getContextPath()%>/img/<%=pb.getPimage()%>" width="40">
 			</td>
 			<td>
-			<form action="" method="post" name="f">
+			<form action="mall_cartEdit.jsp" method="post" name="f">
+			<input type="hidden" name="pnum" value="<%=pb.getPnum()%>">
 			<input type="text" name="oqty" value="<%=pb.getPqty() %>" size="2"> 
 			<input type="submit" value="수정">
 			</form>
@@ -49,7 +50,7 @@
 			</td>
 			<td><%=pb.getPrice() %></td>
 			<td><%=pb.getPrice() %></td>
-			<td><a href="">삭제</a></td>
+			<td><a href="mall_cartDel.jsp?pnum=<%=pb.getPnum()%>">삭제</a></td>
 			
 			</tr>
 			<%} }%>
@@ -59,8 +60,8 @@
 				총 적립 포인트 : <%=point %>포인트
 				</td>
 				<td colspan="2">
-				<a href=""> [주문하기]</a>
-				<a href=""> [계속 쇼핑]</a>
+				<a href="mall_order.jsp?pnum=00&oqty=00"> [주문하기]</a>
+				<a href="mall.jsp"> [계속 쇼핑]</a>
 				</td>
 			</tr>
 		</table>

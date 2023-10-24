@@ -5,7 +5,7 @@
 var isCheck = false;
 var use;
 var pwuse;
-
+var pwerror; // 추가함
 $(function(){
 	$("input[name=id]").keydown(function(){
 		$("#idmessage").css('display','none');
@@ -13,11 +13,13 @@ $(function(){
 		use = "";
 	});
 });
-
+ 
 function writeSave(){ // submit(가입하기)
-	//alert(1);
+	
+	alert(11);  
+	
 	if($("input[name=id]").val()==""){
-		alert("아이디를 입력하세요");
+		alert("아이디를 입력하세요1");
 		$("input[name=id]").focus();
 		isBlank = true;
 		return false;
@@ -44,6 +46,12 @@ function writeSave(){ // submit(가입하기)
 		alert("비밀번호 일치하지 않습니다.");
 		return false;
 	}
+	if(pwerror == "error"){ // 추가함
+		alert("비번 형식 오류");
+		return false;
+	}
+	alert(pwerror);
+	
 }//writeSave
 
 function duplicate(){ // 중복체크
@@ -90,22 +98,28 @@ function repassword_keyup(){
 
 
 function pwcheck(){
+	
 	//alert(2);
 	pvalue = $('input[name="password"]').val();
-	regexp = /^[a-z0-9]{3,8}$/;
-	var regexp = / /; // 영문 소문자/숫자 조합 3~8
-	if(pvalue.search(regexp)==1){
-		alert('길이는 3~8사이입니다.');
+	var regexp = /^[a-z0-9]{3,8}$/i; // 영문 소문자/숫자 조합 3~8
+	
+	if(pvalue.search(regexp) == -1){
+		alert('길이는 3~8로 입력하세요.');
+		pwerror = "error"; // 추가함
 		return false;
 	}
-	var chk_eng = pvalue.search(/[a-z]/i)// /다음에 i쓰면 대소문자 무시한다
-	var chk_num = pvalue.search(/[a-z]/i)//
-	alert(chk_eng+","+chk_num); 
+	var chk_eng = pvalue.search(/[a-z]/); // 985
+	var chk_num = pvalue.search(/[0-9]/); // sdf
+	//alert(chk_eng +"," + chk_num);
+	
 	if(chk_eng<0 || chk_num<0){
 		alert('영문 소문자/숫자 조합이 아닙니다.');
+		pwerror = "error"; // 추가함
 		return false;
+	}else{ // 추가함
+		pwerror = "";
 	}
-}
+}//pwcheck
 
 
 

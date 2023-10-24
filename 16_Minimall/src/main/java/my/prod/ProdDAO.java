@@ -185,7 +185,7 @@ public class ProdDAO {
 		public int UpdateNumber(int pnum,int ovaule)throws Exception {
 			int cnt =0;
 			Connection conn = getConnection();
-			String sql="update product set pqty= pqty- ? where pnum = ? ";
+			String sql="update product set pqty= ? where pnum = ? ";
 			ps =conn.prepareStatement(sql);
 			ps.setInt(1, ovaule);
 			ps.setInt(2, pnum);

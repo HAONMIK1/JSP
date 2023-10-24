@@ -5,7 +5,7 @@
     
 <%
 	request.setCharacterEncoding("UTF-8");
-	int pnum =Integer.parseInt(request.getParameter("pnum"));
+int pnum = Integer.parseInt(request.getParameter("pnum"));
 	ProdDAO pdao = ProdDAO.getInstance();
 	ArrayList<ProdDTO> plists =pdao.selectProdNum(pnum);
 	ProdDTO pb =plists.get(0);
@@ -19,15 +19,20 @@
 		}
 		location.href="mall_cartAdd.jsp?pnum="+pnum+"&ovalue="+ovalue;
 	}
+	function goOrder(pnum) {
+		oqty=f.oqty.value;
+		document.f.action="<%=request.getContextPath()%>/myshop/display/mall_order.jsp?pnum="+pnum;
+		document.f.submit();
+	}
 </script>
 <%@include file="malltop.jsp"%>
 <td>
-<form action="" name="f">
 <table align="center" border="1">
 		<tr > <td colspan="2" align="center">  [<%=pb.getPname() %>]상품정보</td> </tr>
 <tr>
 <td> <img src="<%=request.getContextPath() %>/img/<%=pb.getPimage()%>" width="200"> </td>
 <td >
+<form name="f" method="post">
 상품 번호 :<%=pb.getPnum() %><br>
 상품 이름 :<%=pb.getPname() %><br>
 상품 가격 :<%=pb.getPrice() %><br>
@@ -37,7 +42,8 @@
 <tr><td>
 <a onclick="goCart('<%=pb.getPnum() %>')"> <img  src="<%=request.getContextPath() %>/img/cartbtn.gif"> </a>
 </td><td>
-<a href=""> <img  src="<%=request.getContextPath() %>/img/orderbtn.gif"> </a>
+<a <%-- href="javascript:goOrder('<%=pb.getPnum() %>')" --%> onclick="goOrder('<%=pb.getPnum() %>')" > 
+<img  src="<%=request.getContextPath() %>/img/orderbtn.gif"> </a>
 </td></tr>
 </table>
 </td>

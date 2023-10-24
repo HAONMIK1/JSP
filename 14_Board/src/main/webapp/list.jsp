@@ -1,9 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="board.BoardBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="board.BoardDao"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ include file="color.jsp"%>
 <link rel="stylesheet" href="style.css" type="text/css">
 <style type="text/css">
@@ -11,6 +11,8 @@
 	text-align:  center;
 }
 </style>
+<%@include file="top.jsp" %>
+	<td colspan="6" align="center">
 list.jsp
 <br>
 
@@ -42,10 +44,10 @@ list.jsp
 	
 %>
 <h1 align="center">
-	글목록 (전체 글:
+	게시판 (전체 글:
 	<%=count %>)
 </h1>
-<body bgcolor="<%=bodyback_c %>">
+<body >
 
 	<table width="700" align="center">
 		<tr>

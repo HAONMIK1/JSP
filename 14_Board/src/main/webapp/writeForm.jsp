@@ -14,15 +14,18 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
-$(function() {
-	alert("1");
-})
-</script>
-    
-writeForm.jsp<br>
-<body bgcolor="<%=bodyback_c%>">
+   $(function(){
+      //alert(1);
+   });
+   
+  /*  function writeSave(){
+	   alert(2);
+   } */
+</script>    
+
+<body >
 	<b>글쓰기</b>
-	<form method="post" name="writeForm" action="writeProc.jsp">
+	<form method="post" name="writeForm" action="writeProc.jsp"> <!-- onsubmit="return writeSave()" -->
 		<table width="450" bgcolor="<%=bodyback_c%>" align="center">
 			<tr>
 				<td align="right" colspan="2" bgcolor="<%=value_c%>">
@@ -32,21 +35,21 @@ writeForm.jsp<br>
 			<tr>
 				<td width="150" bgcolor="<%=value_c%>" align="center">이 름</td>
 				<td width="300">
-					<input type="text" name="writer" maxlength="10" >
+					<input type="text" name="writer" maxlength="10" value="홍길동">
 				</td>
 			</tr>
 			
 			<tr>
 				<td width="150" bgcolor="<%=value_c%>" align="center">제 목</td>
 				<td width="300">
-					<input type="text" name="subject" maxlength="50" >
+					<input type="text" name="subject" maxlength="50" value="어떤글">
 				</td>
 			</tr>
 			
 			<tr>
 				<td width="150" bgcolor="<%=value_c%>" align="center">Email</td>
 				<td width="300">
-					<input type="text" name="email" maxlength="10" >
+					<input type="text" name="email" maxlength="10" value="aa@xx.com">
 				</td>
 			</tr>
 			
@@ -60,15 +63,15 @@ writeForm.jsp<br>
 			<tr>
 				<td width="150" bgcolor="<%=value_c%>" align="center">비밀번호</td>
 				<td width="300">
-					<input type="password" name="passwd" maxlength="10">
+					<input type="password" name="passwd" maxlength="10" value="1234">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" bgcolor="<%=value_c%>" align="center">
-					<input type="submit" value="글쓰기" onclick= return writeSave(); >
+					<input type="submit" value="글쓰기" onClick="return writeSave()"><!-- onClick="return writeSave()" -->
 					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기" onClick="location.href='list.jsp'">
-				</td>
+					<input type="button" value="목록보기" onClick="location.href='list.jsp'"> 
+				</td> 
 				
 			</tr>
 			

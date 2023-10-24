@@ -7,7 +7,7 @@
 <%
 String cPath = request.getContextPath();
 CategoryDAO cdao = CategoryDAO.getInstance();
-ArrayList<CategoryDTO> lists = cdao.selectCategory();
+String[] lists = {"CEO 인사말","회사 연혁","조직도"};
 String id = request.getParameter("id");
 String memid = (String)session.getAttribute("memid");
 %>
@@ -45,20 +45,30 @@ String memid = (String)session.getAttribute("memid");
 	</tr>
 	<tr height= "400">
 		<td valign="top" width="150" align="center">
-			<table border="1" >
+			<table border="1"  width="150">
 				<caption><b>카테고리</b></caption>
-					<% 
 			
-			for(int i=0; i<lists.size();i++) {
-				CategoryDTO cb = lists.get(i);
-			%>
 				<tr>
 					<td>
-		<a href="<%=cPath%>/myshop/display/mall_cglist.jsp?cname=<%=cb.getCname() %>&cgname=<%=cb.getCname() %>">
-			<%=cb.getCname() %>[<%=cb.getCode() %>]
+		<a href="ceo.jsp">
+			<%=lists[0] %>
 		</a>
 					</td>
 				</tr>
-			<%} %>
+				<tr>
+					<td>
+		<a href="chart.jsp">
+			<%=lists[1] %>
+		</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+		<a href="history.jsp">
+			<%=lists[2] %>
+		</a>
+					</td>
+				</tr>
+		
 			</table>
 

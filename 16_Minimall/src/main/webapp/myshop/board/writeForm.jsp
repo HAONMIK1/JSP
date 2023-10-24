@@ -19,8 +19,8 @@ $(function() {
 })
 </script>
     
-writeForm.jsp<br>
-<body bgcolor="<%=bodyback_c%>">
+
+<body >
 	<b>글쓰기</b>
 	<form method="post" name="writeForm" action="writeProc.jsp">
 		<table width="450" bgcolor="<%=bodyback_c%>" align="center">

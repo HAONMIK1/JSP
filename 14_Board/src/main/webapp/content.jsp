@@ -14,7 +14,6 @@
 		margin : auto;
 	}
 </style>   
-list.jsp=>content.jsp<br>
 
 글내용 보기
 <%-- <jsp:useBean id="bb" class="board.BoardBean"/> --%>
@@ -26,7 +25,7 @@ list.jsp=>content.jsp<br>
 	BoardBean bb= bdao.getArticleByNum(num); 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
-<body bgcolor="<%=bodyback_c %>">
+<body>
 <h1>글내용보기(<%=bb.getRef() %><%=bb.getRe_level() %> <%=bb.getRe_step() %>)</h1>
 <table width="500" border="1" bgcolor="<%=bodyback_c%>" align="center">
 	<tr>

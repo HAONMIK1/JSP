@@ -170,11 +170,11 @@ public class BoardDao {
 		try {
 			String sql2 = "update board set readcount=readcount+1 where num=?";
 			String sql = "select * from board where num = ?";
-			
+
 			ps = conn.prepareStatement(sql2);
 			ps.setInt(1, num);
 			ps.executeUpdate(); // 조회수 증가
-			
+
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, num);
 			rs = ps.executeQuery();
@@ -201,49 +201,45 @@ public class BoardDao {
 
 		return bb;
 	}//getArticle
-	public int delete(int num,String passwd) {
-		int cnt = -1;
-		String sql = "select passwd from board where num = ?";
+
+	public int deleteArticle(int num,String passwd){
+
+		int cnt=-1;
+
+		String sql = "select passwd from board where num=?";
+
 		try {
-			ps= conn.prepareStatement(sql);
+
+			ps = conn.prepareStatement(sql);
+
 			ps.setInt(1, num);
 
-			rs = ps.executeQuery(); // 조회수 증가
+			rs= ps.executeQuery();
+
 			if(rs.next()) {
-				if(rs.getString("passwd").equals(passwd)) {
-				String sql1 = "delete from board where num = ?";
-				try {
-					ps= conn.prepareStatement(sql1);
+				if(passwd.equals(rs.getString("passwd"))) {
+					String sql2 = "delete from board where num=?";
+					ps = conn.prepareStatement(sql2);
 					ps.setInt(1, num);
-					cnt = ps.executeUpdate();
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
+
+					cnt=ps.executeUpdate();
+
+				}else {
+
 				}
 			}
-		} catch (SQLException e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			//			try {
-			//			if(ps != null) {
-			//				ps.close();
-			//			}
-			//			if(rs != null) {
-			//				rs.close();
-			//			}
-			//		}catch(Exception e) {
-			//			e.printStackTrace();
-			//		}
 		}
 		return cnt;
-	}
-	public BoardBean getArticleByNum(int num){
 
+	}//deleteArticle
+
+	public BoardBean getArticleByNum(int num) {
 		BoardBean bb = null;
-
+		String sql = "select * from board where num=?";
 		try {
-			String sql = "select * from board where num = ?";
-			
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, num);
 			rs = ps.executeQuery();
@@ -267,83 +263,75 @@ public class BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return bb;
-	}//getArticle
+	}//getArticleByNum
+
 	public int updateArticle(BoardBean bb) {
 		int cnt = -1;
+		String sql = "select passwd from board where num=?";
+		String sql2 = "update board set writer=?, subject=?, email=?, content=? where num=?";
+
 		try {
-			String sql = "select * from board where num = ?";
-			
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, bb.getNum());
+
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				if(rs.getString("passwd").equals(bb.getPasswd())) {
-				String sql1 = "update board set writer = ?,email = ?,subject = ?, content = ? where num = ?";
-				try {
-					ps= conn.prepareStatement(sql1);
-					ps.setString(1,bb.getWriter() );
-					ps.setString(2,bb.getEmail() );
-					ps.setString(3,bb.getSubject() );
-					ps.setString(4,bb.getContent() );
+				if(bb.getPasswd().equals(rs.getString("passwd"))) {
+
+					ps = conn.prepareStatement(sql2);
+					ps.setString(1, bb.getWriter());
+					ps.setString(2, bb.getSubject());
+					ps.setString(3, bb.getEmail());
+					ps.setString(4, bb.getContent());
 					ps.setInt(5, bb.getNum());
+
 					cnt = ps.executeUpdate();
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
 				}
 			}
-			
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return cnt;
-}
-	public int replyArticle(BoardBean bb) {
+	}//updateArticle
+	
+	public int replyArticle(BoardBean bb) { // 10(내입5+부3+2)
 		int cnt = -1;
-		int cnt2 = -1;
-		String sql1 ="update board set re_level= re_level+1 where ref = ? and re_level = ? ";
-		String sql = "insert into board(num,writer,email,subject,passwd,"
-				+ "reg_date,ref,re_step,re_level,content,ip) "
-				+ "values(board_seq.nextval,?,?,?,?,?,?,?,?,?,?)";
+		
+		String sql2 = "update board set re_step=re_step+1 where ref=? and re_step>?";
+		
+		String sql = "insert into board(num,writer,email,subject,passwd," 
+					+ "reg_date,ref,re_step,re_level,content,ip) "
+					+ "values(board_seq.nextval,?,?,?,?,?,?,?,?,?,?)";
+		
 		try {
-			ps = conn.prepareStatement(sql1);
+			ps = conn.prepareStatement(sql2);
 			ps.setInt(1, bb.getRef());
-			ps.setInt(2, bb.getRe_level());
-			cnt2 =ps.executeUpdate();
+			ps.setInt(2, bb.getRe_step());
+			ps.executeUpdate(); // update
+			
+			int re_step = bb.getRe_step()+1;
+			int re_level = bb.getRe_level()+1;
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, bb.getWriter());
 			ps.setString(2, bb.getEmail());
 			ps.setString(3, bb.getSubject());
 			ps.setString(4, bb.getPasswd());
-			ps.setTimestamp(5,bb.getReg_date());
-
+			ps.setTimestamp(5, bb.getReg_date());
 			ps.setInt(6, bb.getRef());
-			ps.setInt(7, bb.getRe_step()+1);
-			ps.setInt(8, bb.getRe_level()+1);
+			ps.setInt(7, re_step);
+			ps.setInt(8, re_level);
 			ps.setString(9, bb.getContent());
 			ps.setString(10, bb.getIp());
-
-			cnt = ps.executeUpdate();
-
+			cnt = ps.executeUpdate(); // insert
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			//			try {
-			//			if(ps != null) {
-			//				ps.close();
-			//			}
-			//			if(rs != null) {
-			//				rs.close();
-			//			}
-			//		}catch(Exception e) {
-			//			e.printStackTrace();
-			//		}
 		}
-		return cnt2;
-	}//insertArticle
-	}
+		
+		return cnt;
+	}//replyArticle
+}
+
+

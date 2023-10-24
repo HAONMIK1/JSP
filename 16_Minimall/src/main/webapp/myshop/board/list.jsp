@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../display/malltop.jsp" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="board.*"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,9 +12,9 @@
 }
 </style>
 
+<%@include file="../display/malltop.jsp" %>
 	<td colspan="6" align="center">
-list.jsp
-<br>
+
 
 <%
 	BoardDao bdao = BoardDao.getInstance();
@@ -45,12 +44,12 @@ list.jsp
 	
 %>
 <h1 align="center">
-	글목록 (전체 글:
+	게시판(전체 글:
 	<%=count %>)
 </h1>
-<body bgcolor="<%=bodyback_c %>">
+<body>
 
-	<table width="700" align="center">
+	<table width="650" align="center" >
 		<tr>
 			<td align="center"><a href="writeForm.jsp">글쓰기</a></td>
 		</tr>
@@ -58,13 +57,13 @@ list.jsp
 	<%
 			if(count==0){
 		%>
-	<table width= "700">
+	<table width= "650">
 	<tr>
 		<td align="center" bgcolor="<%=value_c%>">게시판에 저장된 글이 없습니다.</td>
 	</tr>
 	</table>
 	<%}else{ %>
-	<table width="700" align="center">
+	<table width="650" align="center">
 		<tr bgcolor="<%=value_c%>">
 			<td>번호</td>
 			<td>제목</td>
@@ -84,8 +83,8 @@ list.jsp
 						int wid =0;
 						if(bb.getRe_level()>0){
 							wid = bb.getRe_level()*20;
-						%> <img alt="" src="<%=request.getContextPath() %>/img/level.gif" width="<%=wid%>"> <img
-				alt="" src="images/re.gif"> <%
+						%> <img alt="" src="<%=request.getContextPath() %>/img/level.gif" width="<%=wid%>"> 
+						<img src="<%=request.getContextPath() %>/img/re.gif"> <%
 						}else{
 							
 						}

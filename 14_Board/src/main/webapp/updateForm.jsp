@@ -30,8 +30,8 @@ $(function() {
 })
 </script>
     
-writeForm.jsp<br>
-<body bgcolor="<%=bodyback_c%>">
+
+<body >
 	<b>글쓰기</b>
 	<form method="post" name="updateForm" action="updateProc.jsp?pageNum=<%=pageNum%>">
 	<input type="hidden" name="num" value ="<%=num%>">
